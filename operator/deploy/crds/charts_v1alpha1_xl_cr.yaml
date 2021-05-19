@@ -13,29 +13,39 @@ spec:
 
   # Global settings
   global:
-  #  registry: index.docker.io
-  #  imageUsername: turbouser
-  #  imagePassword: turbopassword
+  # registry: index.docker.io
+  # imageUsername: turbouser
+  # imagePassword: turbopassword
+  # imagePullSecret: regcred
     repository: turbonomic
     tag: 8.1.6
     #externalIP: 10.0.2.15
     #externalDbIP: 10.0.2.15
     #externalTimescaleDBIP: 10.0.2.15
     externalArangoDBName: arango.turbo.svc.cluster.local
+    ingress:
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+        # kubernetes.io/ingress.class: "nginx"
+        # kubernetes.io/tls-acme: "true"
+        # certmanager.k8s.io/cluster-issuer: "vault-issuer"
+  
+  nginxingress: 
+    enabled: false
 
 # Component selector - Probes
-#  actionscript:
-#    enabled: true
-#  actionstream-kafka:
-#    enabled: false
-#  appdynamics:
-#    enabled: true
-#  appinsights:
-#    enabled: true
+  actionscript:
+    enabled: true
+  actionstream-kafka:
+    enabled: false
+  appdynamics:
+    enabled: true
+  appinsights:
+    enabled: true
 #  aws:
 #    enabled: true
-#  azure:
-#    enabled: true
+  azure:
+    enabled: true
 #  dynatrace:
 #    enabled: true
 #  hpe3par:
@@ -46,18 +56,18 @@ spec:
 #    enabled: false
 #  hyperv:
 #    enabled: true
-#  kubeturbo:
-#    enabled: true
+  kubeturbo:
+    enabled: true
 #  netapp:
 #    enabled: true
 #  nutanix:
 #    enabled: true
 #  oneview:
 #    enabled: true
-#  prometheus:
-#    enabled: true
-#  prometurbo:
-#    enabled: true
+  prometheus:
+    enabled: true
+  prometurbo:
+    enabled: true
 #  pure:
 #    enabled: true
 #  scaleio:
@@ -76,16 +86,16 @@ spec:
 #    enabled: true
 #  snmp:
 #    enabled: true
-#  mssql:
-#    enabled: true
+  mssql:
+    enabled: true
 #  mysql:
 #    enabled: false
-#  oracle:
-#    enabled: false
-#  tomcat:
-#    enabled: false
-#  jvm:
-#    enabled: false
+  oracle:
+    enabled: false
+  tomcat:
+    enabled: false
+  jvm:
+    enabled: false
 #  newrelic:
 #    enabled: true
 #  udt:

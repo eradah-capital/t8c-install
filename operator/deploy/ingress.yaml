@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-turbonomic-ui
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/cluster-issuer: "vault-issuer"
+spec:
+  rules:
+  - host: turbonomic.k8s.shd.eradahcapital.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: api
+          servicePort: 8080
+  tls:
+  - secretName: turbonomic-production-tls
+    hosts:
+    - turbonomic.k8s.shd.eradahcapital.com
+
+    # administrator / Ghandu
